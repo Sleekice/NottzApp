@@ -1,30 +1,9 @@
+/**********************************************************
+ *  ERROR DIALOG FRAGMENT
+ **********************************************************/
+
 /*
- *
- *  *
- *  *  * MIT License
- *  *  *
- *  *  * Copyright (c) 2020 Spikey Sanju
- *  *  *
- *  *  * Permission is hereby granted, free of charge, to any person obtaining a copy
- *  *  * of this software and associated documentation files (the "Software"), to deal
- *  *  * in the Software without restriction, including without limitation the rights
- *  *  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  *  * copies of the Software, and to permit persons to whom the Software is
- *  *  * furnished to do so, subject to the following conditions:
- *  *  *
- *  *  * The above copyright notice and this permission notice shall be included in all
- *  *  * copies or substantial portions of the Software.
- *  *  *
- *  *  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  *  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  *  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  *  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  *  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  *  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  *  * SOFTWARE.
- *  *
- *
- *
+ * This code defines a BottomSheetDialogFragment that displays an error dialog.
  */
 
 package thecodemonks.org.nottzapp.ui.dialog
@@ -38,15 +17,21 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import thecodemonks.org.nottzapp.databinding.ErrorDialogLayoutBinding
 
+
 class ErrorDialog : BottomSheetDialogFragment() {
+    // Binding for the error dialog layout
     private var _binding: ErrorDialogLayoutBinding? = null
     private val binding get() = _binding!!
+
+    // Retrieve arguments passed to the dialog
     private val args: ErrorDialogArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflates the error dialog layout and returns the root view
         _binding = ErrorDialogLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,14 +40,18 @@ class ErrorDialog : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.run {
+            // Set the dialog title and message from the arguments
             dialogTitle.text = args.title
             dialogMessage.text = args.message
+
+            // Handle the button click to dismiss the dialog
             dialogButtonOk.setOnClickListener { dialog?.dismiss() }
         }
     }
 
     override fun onStart() {
         super.onStart()
+        // Configure the dialog window layout to match the parent's dimensions
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
@@ -71,6 +60,7 @@ class ErrorDialog : BottomSheetDialogFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        // Release the binding when the fragment is destroyed
         _binding = null
     }
 }

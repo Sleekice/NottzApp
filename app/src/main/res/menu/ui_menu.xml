@@ -29,6 +29,16 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!--        android:icon="@drawable/"-->
+    <item
+        android:id="@+id/action_search"
+
+        android:title="search"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
     <item
         android:id="@+id/action_night_mode"
         android:checkable="true"
@@ -41,5 +51,7 @@
         android:enabled="true"
         android:title="@string/menu_about"
         app:showAsAction="never" />
+
+
 
 </menu>
